@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: url('static/images/cbg1.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .navbar {
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 60px;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            margin: 0 20px;
+            padding: 10px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .navbar a:hover {
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        .container {
+            display: flex;
+            max-width: 1200px;
+            width: 100%;
+            height: 600px; /* Set a fixed height for the container */
+            position: relative;
+            margin-top: 80px; /* Space for the fixed navbar */
+            overflow: hidden;
+        }
+
+        .contact-form, .contact-options {
+            flex: 1;
+            padding: 30px;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            position: relative;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.2); /* Transparent background */
+            opacity: 0;
+            transform: translateX(-100%);
+        }
+
+        .contact-form.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .contact-options {
+            background: rgba(248, 249, 250, 0.2); /* Transparent background */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-left: 1px solid #ddd;
+            opacity: 0;
+            transform: translateX(100%);
+        }
+
+        .contact-options.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .contact-form h1, .contact-options h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #fff;
+            text-align: center;
+        }
+
+        .contact-options h2 {
+            font-size: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #ddd;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            transition: border-color 0.3s;
+            background: rgba(255, 255, 255, 0.7); /* Slightly transparent background for inputs */
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 15px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: block;
+            width: 100%;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .contact-options .name {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .contact-options a {
+            display: block;
+            color: #007bff;
+            text-decoration: none;
+            font-size: 18px;
+            margin-bottom: 15px;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-options a:hover {
+            color: #0056b3;
+        }
+
+        .contact-options p {
+            font-size: 16px;
+            color: #5f2424;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-options img {
+            vertical-align: middle;
+            margin-right: 10px;
+            height: 24px;
+            width: 24px;
+        }
+
+        .contact-options .icon {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        /* Animation */
+        @keyframes slideInFromLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100%);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInFromRight {
+            from {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .contact-form.show {
+            animation: slideInFromLeft 0.5s ease-out forwards;
+        }
+
+        .contact-options.show {
+            animation: slideInFromRight 0.5s ease-out forwards;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="/project">Home</a>
+        <a href="/data_form">Predict Satisfaction</a>
+        <a href="/planes">Types of Planes</a>
+        <a href="/about">About Us</a>
+        <a href="/feedback">Feedback</a>
+        
+    </div>
+
+    <div class="container">
+        <!-- Contact Form -->
+        <div class="contact-form show">
+            <h1>Contact Us</h1>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="rating">Rate Us</label>
+                    <input type="range" id="rating" name="rating" min="1" max="10">
+                </div>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+        <!-- Contact Options -->
+        <div class="contact-options show">
+            <h2>Get in Touch</h2>
+            <div class="name">Rahul Saini</div>
+            <div class="icon">
+                <img src="static/images/phone-icon.png" alt="Phone Icon">
+                <p>+91 8619064477</p>
+            </div>
+            <div class="icon">
+                <img src="static/images/linkedin-icon.png" alt="LinkedIn Icon">
+                <a href="https://www.linkedin.com/in/yourprofile" target="_blank">Connect on LinkedIn</a>
+            </div>
+            <div class="icon">
+                <img src="static/images/github-icon.png" alt="GitHub Icon">
+                <a href="https://github.com/Rahul86190" target="_blank">https://github.com/Rahul86190</a>
+            </div>
+            <div class="icon">
+                <img src="static/images/email-icon.png" alt="Email Icon">
+                <p>rahulsaini132005@gmail.com</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Show a simple alert for demonstration purposes
+            alert('Your message has been sent!');
+
+            // Optionally, reset the form fields
+            event.target.reset();
+        });
+    </script>
+</body>
+
+</html>

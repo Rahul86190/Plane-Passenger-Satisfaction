@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Udaan Project</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="/project">Home</a></li>
+            <li><a href="/data_form">Start Preddiction</a></li>
+            <li><a href="/planes">Explore Planes</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- About Us Section -->
+    <section class="about-us">
+        <!-- Welcome Section -->
+        <div class="welcome-section active-slide">
+            <div class="content-box">
+                <h1>Welcome to Udaan</h1>
+                <p>Udaan is an innovative platform dedicated to revolutionizing the airline passenger experience by predicting satisfaction levels. We leverage cutting-edge machine learning techniques to analyze various factors and provide actionable insights for airlines to improve their services, ensuring a smoother and more enjoyable journey for passengers.</p>
+                <p>Whether you're an airline aiming to enhance customer satisfaction or a traveler curious about what to expect on your next flight, Udaan is your go-to resource for reliable, data-driven predictions.</p>
+            </div>
+        </div>
+
+        <!-- Achievements Section -->
+        <div class="achievement-section">
+            <div class="content-box">
+                <h2>Our Journey and Achievements</h2>
+                <p>Since its inception, Udaan has consistently pushed the boundaries of passenger satisfaction analysis. Our team of experts in data science and aviation has crafted a sophisticated prediction model that delivers deep insights into the passenger experience.</p>
+                <div class="past-work">
+                    <h3>Milestones</h3>
+                    <ul>
+                        <li><strong>Advanced Prediction Algorithms:</strong> Developed a model incorporating a wide range of factors, from in-flight amenities to punctuality, offering precise satisfaction predictions.</li>
+                        <li><strong>User-Centric Design:</strong> Designed an intuitive interface that allows users to effortlessly enter their data and access detailed satisfaction reports.</li>
+                        <li><strong>Continuous Improvement:</strong> Regularly enhanced our model's performance, incorporating user feedback and emerging data trends to refine accuracy.</li>
+                    </ul>
+                </div>
+                <p>We are committed to ongoing innovation in passenger satisfaction analytics, and we invite you to join us on this journey as we continue to break new ground.</p>
+            </div>
+        </div>
+
+        <!-- Privacy Policy Section -->
+        <div class="slide slide3">
+            <div class="content-box">
+                <h2>Privacy Policy</h2>
+                <p>Your privacy is our utmost concern. At Udaan, we ensure that all personal data is securely handled and used exclusively for the purposes outlined. We adhere strictly to privacy regulations and do not share your information with third parties without your explicit consent. To learn more about how we protect your data, please read our <a href="/privacy-policy">Privacy Policy</a>.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Udaan Project. All Rights Reserved.</p>
+            <nav class="footer-nav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/data_form">Start Setisfaction Prediction</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='about_us.js') }}"></script>
+</body>
+</html>

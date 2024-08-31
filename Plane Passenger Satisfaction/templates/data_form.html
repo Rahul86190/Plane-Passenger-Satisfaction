@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Satisfaction Prediction</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #ffffff;
+            background: linear-gradient(135deg, #141e30, #243b55);
+            overflow-x: hidden;
+        }
+        .navbar {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            text-align: center;
+            z-index: 10;
+        }
+        .navbar a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            padding: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .form-container {
+            background: rgba(20, 30, 48, 0.9);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            max-width: 700px;
+            width: 100%;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 34px;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #f39c12;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            font-size: 18px;
+            display: block;
+            margin-bottom: 10px;
+            color: #f1c40f;
+        }
+
+        .form-group select, .form-group input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background: #2c3e50;
+            color: white;
+            font-size: 16px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-group select:focus, .form-group input[type="number"]:focus {
+            background: #34495e;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .form-group input[type="submit"] {
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(231, 76, 60, 0.8);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            animation: pulse 1.5s infinite;
+            text-align: center;
+            display: inline-block;
+            width: 100%;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 6px 15px rgba(231, 76, 60, 0.8);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 10px 20px rgba(231, 76, 60, 0.8);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 6px 15px rgba(231, 76, 60, 0.8);
+            }
+        }
+
+        .form-group a:hover, .form-group input[type="submit"]:hover {
+            background: linear-gradient(45deg, #c0392b, #e74c3c);
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(231, 76, 60, 0.9);
+        }
+
+        .rating {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #f1c40f;
+        }
+
+        .rating label {
+            font-size: 16px;
+            margin-right: 10px;
+            flex: 1;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .rating input {
+            display: none;
+        }
+
+        .rating input:checked + label {
+            background: #f39c12;
+            color: #2c3e50;
+            border-radius: 5px;
+            padding: 5px 0;
+        }
+
+        .rating label:hover {
+            background: #f39c12;
+            color: #2c3e50;
+            border-radius: 5px;
+            padding: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">Profile</a>
+        <a href="/project">Project Page</a>
+        <a href="/about">About</a>
+        <a href="/data_form">Prediction</a>
+        <a href="/contact">Contact</a>
+        <a href="/planes">Type Of Planes</a>
+    </div>
+
+<div class="container">
+    <div class="form-container">
+        <h1>Passenger Satisfaction Prediction</h1>
+        <form action="{{ url_for('data') }}" method="POST">
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender">
+                    <option value="1">Male</option>
+                    <option value="2">Female</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="customerType">Customer Type:</label>
+                <select id="customerType" name="customerType">
+                    <option value="1">Loyal Customer</option>
+                    <option value="2">Disloyal Customer</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="typeOfTravel">Type of Travel:</label>
+                <select id="typeOfTravel" name="typeOfTravel">
+                    <option value="2">Personal Travel</option>
+                    <option value="1">Business Travel</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="class">Class:</label>
+                <select id="class" name="class">
+                    <option value="Business">Business</option>
+                    <option value="Economy">Economy</option>
+                    <option value="Economy Plus">Economy Plus</option>
+                    
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" min="1" max="120" required>
+            </div>
+
+            <div class="form-group">
+                <label for="flightDistance">Flight Distance (in km):</label>
+                <input type="number" id="flightDistance" name="flightDistance" min="0" required>
+            </div>
+
+            <div class="form-group">
+                <label for="inflightEntertainment">Inflight Entertainment (Rating 1 to 5):</label>
+                <div class="rating">
+                    <input type="radio" id="inflightEntertainment1" name="inflightEntertainment" value="1">
+                    <label for="inflightEntertainment1">1</label>
+                    <input type="radio" id="inflightEntertainment2" name="inflightEntertainment" value="2">
+                    <label for="inflightEntertainment2">2</label>
+                    <input type="radio" id="inflightEntertainment3" name="inflightEntertainment" value="3">
+                    <label for="inflightEntertainment3">3</label>
+                    <input type="radio" id="inflightEntertainment4" name="inflightEntertainment" value="4">
+                    <label for="inflightEntertainment4">4</label>
+                    <input type="radio" id="inflightEntertainment5" name="inflightEntertainment" value="5">
+                    <label for="inflightEntertainment5">5</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="baggageHandling">Baggage Handling (Rating 1 to 5):</label>
+                <div class="rating">
+                    <input type="radio" id="baggageHandling1" name="baggageHandling" value="1">
+                    <label for="baggageHandling1">1</label>
+                    <input type="radio" id="baggageHandling2" name="baggageHandling" value="2">
+                    <label for="baggageHandling2">2</label>
+                    <input type="radio" id="baggageHandling3" name="baggageHandling" value="3">
+                    <label for="baggageHandling3">3</label>
+                    <input type="radio" id="baggageHandling4" name="baggageHandling" value="4">
+                    <label for="baggageHandling4">4</label>
+                    <input type="radio" id="baggageHandling5" name="baggageHandling" value="5">
+                    <label for="baggageHandling5">5</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="cleanliness">Cleanliness (Rating 1 to 5):</label>
+                <div class="rating">
+                    <input type="radio" id="cleanliness1" name="cleanliness" value="1">
+                    <label for="cleanliness1">1</label>
+                    <input type="radio" id="cleanliness2" name="cleanliness" value="2">
+                    <label for="cleanliness2">2</label>
+                    <input type="radio" id="cleanliness3" name="cleanliness" value="3">
+                    <label for="cleanliness3">3</label>
+                    <input type="radio" id="cleanliness4" name="cleanliness" value="4">
+                    <label for="cleanliness4">4</label>
+                    <input type="radio" id="cleanliness5" name="cleanliness" value="5">
+                    <label for="cleanliness5">5</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="departureDelay">Departure Delay (in minutes):</label>
+                <input type="number" id="departureDelay" name="departureDelay" min="0" required>
+            </div>
+
+            <div class="form-group">
+                <label for="arrivalDelay">Arrival Delay (in minutes):</label>
+                <input type="number" id="arrivalDelay" name="arrivalDelay" min="0" required>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Check Passenger Satisfaction">
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

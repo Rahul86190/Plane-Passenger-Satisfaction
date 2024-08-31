@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Aircraft - Udaan</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='plane_styles.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        #passenger1 {
+            background-image: url("{{ url_for('static', filename='images/passenger1.jpg') }}");
+        }
+
+        #passenger2 {
+            background-image: url("{{ url_for('static', filename='images/passenger2.jpg') }}");
+        }
+
+        #passenger3 {
+            background-image: url("{{ url_for('static', filename='images/passenger3.jpg') }}");
+        }
+
+        #jet1 {
+            background-image: url("{{ url_for('static', filename='images/jet1.jpg') }}");
+        }
+
+        #jet2 {
+            background-image: url("{{ url_for('static', filename='images/jet2.jpg') }}");
+        }
+
+        #jet3 {
+            background-image: url("{{ url_for('static', filename='images/jet3.jpg') }}");
+        }
+
+        #cargo1 {
+            background-image: url("{{ url_for('static', filename='images/cargo1.jpg') }}");
+        }
+
+        #cargo2 {
+            background-image: url("{{ url_for('static', filename='images/cargo2.jpg') }}");
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="/project">Home</a></li>
+            <li><a href="/data_form">Start Prediction</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section">
+        <div class="hero-content">
+            <h1>Explore the Skies</h1>
+            <p>Discover a wide range of aircraft, from passenger planes to private jets and cargo planes. Dive into their unique features and find out what makes them fly high!</p>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <section class="aircraft-section">
+        <!-- Passenger Planes -->
+        <div class="aircraft-type">
+            <h2 class="aircraft-title">Passenger Planes</h2>
+            <div class="aircraft-container">
+                <!-- Passenger Plane 1 -->
+                <div class="aircraft-box">
+                    <div class="aircraft-image" id="passenger1"></div>
+                    <div class="aircraft-info">
+                        <h3>Boeing 787 Dreamliner</h3>
+                        <p>The Boeing 787 Dreamliner is a long-range, mid-size wide-body, twin-engine jet airliner known for its fuel efficiency and passenger comfort. It's a favorite for long-haul flights, offering spacious cabins and cutting-edge in-flight entertainment.</p>
+                    </div>
+                </div>
+                <!-- Passenger Plane 2 -->
+                <div class="aircraft-box">
+                    <div class="aircraft-image" id="passenger2"></div>
+                    <div class="aircraft-info">
+                        <h3>Airbus A380</h3>
+                        <p>The Airbus A380 is the world's largest passenger airliner, known for its double-deck design and spacious interiors. It offers luxurious amenities like onboard lounges, bars, and private suites, making it a popular choice for high-traffic international routes.</p>
+                    </div>
+                </div>
+                <!-- Passenger Plane 3 -->
+                <div class="aircraft-box">
+                    <div class="aircraft-image" id="passenger3"></div>
+                    <div class="aircraft-info">
+                        <h3>Boeing 777</h3>
+                        <p>The Boeing 777, often referred to as the "Triple Seven," is known for its range, efficiency, and passenger comfort. It is widely used for both long-haul and medium-haul routes, offering a perfect balance of performance and comfort.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Private Jets -->
+        <div class="aircraft-type">
+            <h2 class="aircraft-title">Private Jets</h2>
+            <div class="aircraft-container">
+                <!-- Private Jet 1 -->
+                <div class="aircraft-box">
+                    <div class="aircraft-image" id="jet1"></div>
+                    <div class="aircraft-info">
+                        <h3>Gulfstream G650</h3>
+                        <p>The Gulfstream G650 is a top-tier private jet, known for its high speed, long-range, and luxurious interiors. It’s a preferred choice for business executives who demand both comfort and efficiency.</p>
+                    </div>
+                </div>
+                <!-- Private Jet 2 -->
+                <div class="aircraft-box">
+                    <div class="aircraft-image" id="jet2"></div>
+                    <div class="aircraft-info">
+                        <h3>Bombardier Global 7500</h3>
+                        <p>The Bombardier Global 7500 is an ultra-long-range business jet that redefines private flying. It offers a spacious cabin with a four-zone layout, including a master suite and a full-size kitchen, ensuring a luxurious experience on long-haul flights.</p>
+                    </div>
+                </div>
+                <!-- Private Jet 3 -->
+                <div class="aircraft-box">
+                    <div class="aircraft-image" id="jet3"></div>
+                    <div class="aircraft-info">
+                        <h3>Cessna Citation X+</h3>
+                        <p>The Cessna Citation X+ is known as the fastest private jet in the world, offering unmatched speed and range. It's a favorite among those who value time and efficiency, with a design that combines luxury with performance.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cargo Planes -->
+        <div class="aircraft-type">
+            <h2 class="aircraft-title">Cargo Planes</h2>
+            <div class="aircraft-container">
+                <!-- Cargo Plane 1 -->
+                <div class="aircraft-box">
+                    <div class="aircraft-image" id="cargo1"></div>
+                    <div class="aircraft-info">
+                        <h3>Boeing 747-8F</h3>
+                        <p>The Boeing 747-8F is a freight variant of the iconic 747, known for its large cargo capacity and long-range. It is widely used by cargo airlines around the world, providing reliable and efficient transport of goods.</p>
+                    </div>
+                </div>
+                <!-- Cargo Plane 2 -->
+                <div class="aircraft-box">
+                    <div class="aircraft-image" id="cargo2"></div>
+                    <div class="aircraft-info">
+                        <h3>Antonov An-124</h3>
+                        <p>The Antonov An-124 is one of the largest cargo aircraft in the world, designed to transport oversized cargo. It is often used for transporting heavy machinery, military equipment, and other large items across continents.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Udaan. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

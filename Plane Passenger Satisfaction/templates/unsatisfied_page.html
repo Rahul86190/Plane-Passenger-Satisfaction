@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unsatisfaction Noted</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #c0392b, #e74c3c);
+            overflow: hidden;
+            color: #ffffff;
+        }
+        .navbar {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            text-align: center;
+            z-index: 10;
+        }
+        .navbar a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 800px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .data-point {
+            font-size: 18px;
+            margin: 15px 0;
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #unsatisfied-text {
+            font-size: 36px;
+            color: #e74c3c;
+            margin-top: 40px;
+            opacity: 0;
+            animation: burnIn 1s ease-in-out forwards;
+            transform-origin: center;
+        }
+
+        @keyframes burnIn {
+            0% {
+                opacity: 0;
+                text-shadow: 0 0 10px #e74c3c;
+                transform: scale(1.2);
+            }
+            100% {
+                opacity: 1;
+                text-shadow: 0 0 20px #c0392b, 0 0 30px #a93226;
+                transform: scale(1);
+            }
+        }
+
+        #check-again-button {
+            display: none;
+            margin-top: 30px;
+            padding: 12px 100px;
+            font-size: 20px;
+            color: white;
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.8);
+        }
+
+        #check-again-button:hover {
+            background: linear-gradient(45deg, #c0392b, #e74c3c);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">Profile</a>
+        <a href="/project">Project Page</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+    </div>
+    <div class="container">
+        <div id="data-points">
+            <div class="data-point" style="animation-delay: 0.2s;">Gender: {{ gender }}</div>
+            <div class="data-point" style="animation-delay: 0.4s;">Customer Type: {{ customerType }}</div>
+            <div class="data-point" style="animation-delay: 0.6s;">Type of Travel: {{ typeOfTravel }}</div>
+            <div class="data-point" style="animation-delay: 0.8s;">Class of Travel: {{ classOfTravel }}</div>
+            <div class="data-point" style="animation-delay: 1.0s;">Age: {{ age }}</div>
+            <div class="data-point" style="animation-delay: 1.2s;">Flight Distance: {{ flightDistance }} km</div>
+            <div class="data-point" style="animation-delay: 1.4s;">Inflight Entertainment: {{ inflightEntertainment }}</div>
+            <div class="data-point" style="animation-delay: 1.6s;">Baggage Handling: {{ baggageHandling }}</div>
+            <div class="data-point" style="animation-delay: 1.8s;">Cleanliness: {{ cleanliness }}</div>
+            <div class="data-point" style="animation-delay: 2.0s;">Departure Delay: {{ departureDelay }} minutes</div>
+            <div class="data-point" style="animation-delay: 2.2s;">Arrival Delay: {{ arrivalDelay }} minutes</div>
+        </div>
+        <div id="unsatisfied-text" style="animation-delay: 2.5s;">Unsatisfied</div>
+        <button id="check-again-button" onclick="location.href='/data_form';" style="animation-delay: 3s;">Check Again</button>
+    </div>
+
+    <script>
+        setTimeout(() => {
+            document.getElementById('check-again-button').style.display = 'block';
+        }, 2800);
+    </script>
+</body>
+</html>

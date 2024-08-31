@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UDAAN - Passenger Satisfaction Prediction</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            background: url("{{ url_for('static', filename='images/bg1.jpg') }}") no-repeat center center fixed;
+            background-size: cover;
+            background-color: black; /* Fallback background color */
+        }
+
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            width: 30%;
+            background: rgba(174, 237, 244, 0.7);
+            padding: 20px;
+            text-align: center;
+            opacity: 0;
+            animation: fadeInContent 2s forwards;
+        }
+
+        @keyframes fadeInContent {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease-out 3s forwards;
+        }
+
+        .hero-content p {
+            font-size: 24px;
+            margin-bottom: 30px;
+            animation: fadeIn 3s ease-out 3s forwards;
+        }
+
+        .start-button {
+            padding: 20px 50px;
+            font-size: 30px;
+            background: linear-gradient(45deg, #ff6b6b, #f06595);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(255, 105, 180, 0.8);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            animation: pulse 1.5s infinite 4s forwards;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 4px 10px rgba(255, 105, 180, 0.8);
+            }
+            50% {
+                transform: scale(1.1);
+                box-shadow: 0 10px 20px rgba(255, 105, 180, 0.8);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 4px 10px rgba(255, 105, 180, 0.8);
+            }
+        }
+
+        .scroll-content {
+            min-height: calc(100vh - 100px); /* Ensures the content always fills at least the height of the viewport minus the footer */
+            padding: 100px 20px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.6); /* Adjusted background for readability */
+            color: white; /* Ensure text color is white */
+        }
+
+        .dynamic-buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .dynamic-button {
+            padding: 15px 30px;
+            font-size: 20px;
+            background: linear-gradient(45deg, #ff6b6b, #f06595);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 4px 10px rgba(255, 105, 180, 0.6);
+            margin: 10px;
+        }
+
+        .dynamic-button:hover {
+            background: linear-gradient(45deg, #f06595, #ff6b6b);
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(255, 105, 180, 0.8);
+        }
+
+        .plane-info {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+
+        .plane-info-item {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 15px;
+            width: 30%;
+            margin: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .plane-info-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+        }
+
+        .plane-info-item img {
+            width: 100%;
+            border-radius: 15px;
+            transition: transform 0.3s;
+        }
+
+        .plane-info-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .plane-info-item h3 {
+            margin: 10px 0;
+            font-size: 24px;
+            color: #ff6b6b;
+        }
+
+        .plane-info-item p {
+            font-size: 18px;
+            color: white;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #0a0a0a;
+            color: white;
+            width: 100%;
+            position: relative;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Welcome to UDAAN</h1>
+            <p>Your Journey to Better Flights Starts Here!</p>
+            <a href="/data_form" class="start-button">Get Start Prediction</a>
+        </div>
+    </div>
+
+    <div id="scrollContent" class="scroll-content">
+        <h2>Our Services</h2>
+        <div class="dynamic-buttons">
+            <a href="/" class="dynamic-button">Main Page</a>
+            <a href="/planes" class="dynamic-button">See All Planes</a>
+            <a href="/about" class="dynamic-button">About</a>
+            <a href="/contact" class="dynamic-button">Contact</a>
+            <a href="/feedback" class="dynamic-button">Feedback</a>
+        </div>
+
+        <h2>Explore Different Planes</h2>
+        <div class="plane-info">
+            <div class="plane-info-item">
+                <img src="{{ url_for('static', filename='images/passenger_plane.jpg') }}" alt="Passenger Plane">
+                <h3>Passenger Traveling Plane</h3>
+                <p>Experience the most comfortable and luxurious flights with our state-of-the-art passenger planes.</p>
+            </div>
+            <div class="plane-info-item">
+                <img src="{{ url_for('static', filename='images/personal_jet.jpg') }}" alt="Personal Jet">
+                <h3>Personal Jet</h3>
+                <p>Enjoy the privacy and convenience of personal jets tailored for elite travelers.</p>
+            </div>
+            <div class="plane-info-item">
+                <img src="{{ url_for('static', filename='images/luggage_plane.jpg') }}" alt="Luggage Plane">
+                <h3>Luggage Plane</h3>
+                <p>Safe and reliable cargo planes for transporting your goods across the world.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 UDAAN. All Rights Reserved.</p>
+    </div>
+
+</body>
+</html>
